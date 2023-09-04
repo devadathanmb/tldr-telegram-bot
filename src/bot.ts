@@ -6,6 +6,7 @@ import { summarizeController } from "./controllers/summarize";
 dotenv.config();
 
 const TOKEN = process.env.BOT_TOKEN;
+const WEB_HOOK_DOMAIN = process.env.WEB_HOOK_DOMAIN!;
 const bot = new Telegraf(TOKEN!);
 
 bot.command("start", async (ctx) => {
@@ -17,7 +18,11 @@ bot.on("message", async (ctx) => {
 });
 
 bot
-  .launch()
+  .launch({
+    webhook: {
+      domain: WEB_HOOK_DOMAIN,
+    },
+  })
   .then(() => {
     console.log("Bot up and running");
   })
