@@ -8,7 +8,13 @@ export async function summarizeController(ctx: Context): Promise<void> {
       return;
     }
     const message = (ctx.message as { text: string }).text;
-    await ctx.reply("I'm summarizing that for ya.. Gimme a min..");
+    if (message.length <= 100) {
+      await ctx.reply(
+        "The text is too short just like my iq.. Please send something large..",
+      );
+      return;
+    }
+    await ctx.reply("I'm summarizing that for you.. Give me a min..");
 
     const summary = await new Promise<string>((resolve) => {
       summarizeText(message, (result) => {
