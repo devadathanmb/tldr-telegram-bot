@@ -30,4 +30,6 @@ if __name__ == "__main__":
         summary = generate_summary(input_text)
         print(summary)
     except:
-        print("Error while summarizing the message")
+        print(
+            "My brain exploded while summarizing your text. Give me some time to recover."
+        )
